@@ -1,0 +1,24 @@
+﻿
+@{ 
+    var someName = "Robert Paulson";
+    var requestFormText = Request["name"];
+
+    if(requestFormText != null || !requestFormText.IsEmpty())
+    {
+        someName = requestFormText;
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <ul>
+    @for(int i=0; i<10; i++)
+            {
+                <li>his name is @someName</li>
+            }
+    </ul>
+</body>
+</html>

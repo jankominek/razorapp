@@ -1,0 +1,45 @@
+﻿@{ 
+    var rules = new List<string>();
+
+    if (Session["rules"] != null)
+    {
+        rules = (List<string>)Session["rules"];
+    }else
+            {
+                rules.Add("first rule of fightClub");
+            }
+
+
+    if (Request.HttpMethod == "POST")
+    {
+        var ruleToAdd = Request["addRule"];
+        rules.Add(ruleToAdd);
+        Session["rules"] = rules;
+        Response.Redirect("Rules.cshtml");
+
+    }
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <form method="post">
+       <input type="text" name="addRule"/>
+       <input type="submit"/>
+    </form>
+
+    <ul>
+        @if (rules != null)
+        {
+            foreach (string rule in rules)
+            {
+                <li>@rule</li>
+            }
+        }
+    </ul>
+</body>
+</html>
